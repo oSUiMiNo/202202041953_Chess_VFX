@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 3332876586644535354}
   - component: {fileID: 3332876586644535355}
   - component: {fileID: 3332876586644535352}
-  - component: {fileID: 6995817977639245350}
+  - component: {fileID: 7792413813180239902}
   m_Layer: 0
   m_Name: Black_Rook0
   m_TagString: PieceS_Black
@@ -307,7 +307,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &6995817977639245350
+--- !u!95 &7792413813180239902
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

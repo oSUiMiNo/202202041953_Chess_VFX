@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 7365088465534581090}
   - component: {fileID: 7365088465534581093}
   - component: {fileID: 7365088465534581088}
-  - component: {fileID: -8851583098003325744}
+  - component: {fileID: 3389813870060260076}
   m_Layer: 0
   m_Name: White_Rook1
   m_TagString: PieceS_White
@@ -307,7 +307,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &-8851583098003325744
+--- !u!95 &3389813870060260076
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

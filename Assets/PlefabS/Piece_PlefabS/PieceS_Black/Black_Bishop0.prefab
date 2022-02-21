@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5772012937137685012}
   - component: {fileID: 5772012937137685003}
   - component: {fileID: 5772012937137685015}
-  - component: {fileID: 991563025236479018}
+  - component: {fileID: -4293388412353969658}
   m_Layer: 0
   m_Name: Black_Bishop0
   m_TagString: PieceS_Black
@@ -212,7 +212,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &991563025236479018
+--- !u!95 &-4293388412353969658
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

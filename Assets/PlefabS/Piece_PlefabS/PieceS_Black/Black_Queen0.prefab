@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 8054669651858966673}
   - component: {fileID: 8054669651858966670}
   - component: {fileID: 8054669651858966675}
-  - component: {fileID: -1791715607604993266}
+  - component: {fileID: 954649239230112471}
   m_Layer: 0
   m_Name: Black_Queen0
   m_TagString: PieceS_Black
@@ -307,7 +307,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &-1791715607604993266
+--- !u!95 &954649239230112471
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

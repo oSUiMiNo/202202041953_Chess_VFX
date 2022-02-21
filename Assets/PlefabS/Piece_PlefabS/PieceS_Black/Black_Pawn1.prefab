@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9131117226961961667}
   - component: {fileID: 9131117226961961666}
   - component: {fileID: 9131117226961961665}
-  - component: {fileID: 8458511485876448816}
+  - component: {fileID: -3013742125044339620}
   m_Layer: 0
   m_Name: Black_Pawn1
   m_TagString: PieceS_Black
@@ -117,7 +117,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &8458511485876448816
+--- !u!95 &-3013742125044339620
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

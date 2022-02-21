@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4415516962896435830}
   - component: {fileID: 4415516962896435831}
   - component: {fileID: 4415516962896435828}
-  - component: {fileID: 6248282211696945680}
+  - component: {fileID: 7542738752496835560}
   m_Layer: 0
   m_Name: White_Queen0
   m_TagString: PieceS_White
@@ -117,7 +117,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &6248282211696945680
+--- !u!95 &7542738752496835560
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

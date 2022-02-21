@@ -53,6 +53,7 @@ public class Store_Piece : MonoBehaviour
                 {
                     Store_Square_Piece(a, b, c);
                     Current(a, b, c);
+                    controller.Initialize_Game();
                 }
             }
         }
@@ -70,6 +71,7 @@ public class Store_Piece : MonoBehaviour
                 }
             }
         }
+        //Debug.Log("Square Updated");
     }
 
     public void Update_Flag_Current()
@@ -84,6 +86,7 @@ public class Store_Piece : MonoBehaviour
                 }
             }
         }
+        //Debug.Log("Current Updated");
     }
 
 
@@ -93,6 +96,7 @@ public class Store_Piece : MonoBehaviour
     {
         PieceS = new GameObject[2, 2, 8]
         {
+            //白駒
             {
                 {
                     GameObject.Find("White_Rook0"),
@@ -115,6 +119,7 @@ public class Store_Piece : MonoBehaviour
                     GameObject.Find("White_Pawn7")
                 },
              },
+            //黒駒
             {
                 {
                     GameObject.Find("Black_Rook0"),
@@ -166,7 +171,7 @@ public class Store_Piece : MonoBehaviour
         }
     }
 
-    
+ 
     public GameObject Piece_Square(Vector2Int Square)
     {
         for (int a = 0; a < 2; a++)
@@ -185,22 +190,6 @@ public class Store_Piece : MonoBehaviour
         //return controller.Piece_Selected;
         return null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

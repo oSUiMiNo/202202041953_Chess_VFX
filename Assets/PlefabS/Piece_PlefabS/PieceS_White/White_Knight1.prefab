@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2749832449474256503}
   - component: {fileID: 2749832449474256502}
   - component: {fileID: 2749832449474256497}
-  - component: {fileID: -2565154569351328762}
+  - component: {fileID: -2589786376524010626}
   m_Layer: 0
   m_Name: White_Knight1
   m_TagString: PieceS_White
@@ -117,7 +117,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &-2565154569351328762
+--- !u!95 &-2589786376524010626
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

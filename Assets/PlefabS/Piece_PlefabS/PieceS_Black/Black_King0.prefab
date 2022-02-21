@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2486006974012947759}
   - component: {fileID: 2486006974012947752}
   - component: {fileID: 2486006974012947757}
-  - component: {fileID: -642472844383241683}
+  - component: {fileID: -2266558446463724074}
   m_Layer: 0
   m_Name: Black_King0
   m_TagString: PieceS_Black
@@ -307,7 +307,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &-642472844383241683
+--- !u!95 &-2266558446463724074
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

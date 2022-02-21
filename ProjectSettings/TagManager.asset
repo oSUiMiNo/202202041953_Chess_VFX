@@ -8,6 +8,9 @@ TagManager:
   - PieceS_Black
   - TileS
   - Highlight
+  - Highlight_Blue
+  - Highlight_Yellow
+  - Highlight_Red
   layers:
   - Default
   - TransparentFX
@@ -19,8 +22,8 @@ TagManager:
   - 
   - PostProcessing
   - Highlight
-  - 
-  - 
+  - Piece
+  - aboveView
   - 
   - 
   - 

@@ -1,31 +1,58 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
+    public static GameManager instance = null;
     void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Start()
     {
-        Initialize_Game();
+        Component(); 
     }
 
-
-    public bool Turn_Black;
-    public bool Turn_White;
-    public void Initialize_Game()
+    public float Timer;
+    private void Update()
     {
-        Turn_Black = false;
-        Turn_White = true;
+        Timer += Time.deltaTime;
+        if(!GameObject.Find("White_King0") || !GameObject.Find("Black_King0"))
+        {
+            Invoke("CHECKMATE", 1.0f);
+        }
+    }
+
+    //インスタンスたちを取得
+    Text Inform;
+    Controller controller;
+    ChangeScene changeScene;
+    public void Component()
+    {
+        Inform = GameObject.Find("Inform").GetComponent<Text>();
+        controller = GameObject.Find("Controller").GetComponent<Controller>();
+        changeScene = this.gameObject.GetComponent<ChangeScene>();
     }
 
 
-
+    //チェックメイト時の処理
+    public void CHECKMATE()
+    {
+        controller.enabled = false;
+        Inform.text = "CHECKMATE";
+        StartCoroutine(changeScene.Scene("Menu", 5.0f));
+    }
 
 }
 

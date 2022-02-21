@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2691042029751358496}
   - component: {fileID: 2691042029751358497}
   - component: {fileID: 2691042029751358510}
-  - component: {fileID: -4024807570080147846}
+  - component: {fileID: -8546243777488159638}
   m_Layer: 0
   m_Name: White_Pawn2
   m_TagString: PieceS_White
@@ -212,7 +212,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &-4024807570080147846
+--- !u!95 &-8546243777488159638
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

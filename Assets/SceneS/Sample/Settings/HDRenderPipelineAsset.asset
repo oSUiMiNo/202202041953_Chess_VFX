@@ -199,9 +199,9 @@ MonoBehaviour:
     lightLayerName0: Light Layer default
     lightLayerName1: Highlight
     lightLayerName2: Effect
-    lightLayerName3: Light Layer 3
-    lightLayerName4: Light Layer 4
-    lightLayerName5: Light Layer 5
+    lightLayerName3: Piece
+    lightLayerName4: 
+    lightLayerName5: 
     lightLayerName6: Light Layer 6
     lightLayerName7: Light Layer7
     supportDistortion: 1

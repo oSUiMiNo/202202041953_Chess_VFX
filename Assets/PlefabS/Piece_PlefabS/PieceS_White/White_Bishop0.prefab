@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 627871082463210388}
   - component: {fileID: 627871082463210391}
   - component: {fileID: 627871082463210387}
-  - component: {fileID: 6058372132333582418}
+  - component: {fileID: -1635625423098635726}
   m_Layer: 0
   m_Name: White_Bishop0
   m_TagString: PieceS_White
@@ -212,7 +212,7 @@ MonoBehaviour:
   Exist_Oponent: 0
   Out_of_Borad: 0
   first: 1
---- !u!95 &6058372132333582418
+--- !u!95 &-1635625423098635726
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
