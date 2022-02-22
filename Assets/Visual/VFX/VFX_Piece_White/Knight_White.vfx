@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: VFX_Knight_White
+  m_Name: Knight_White
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
   m_Children:
@@ -60,7 +60,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VFX_Knight_White
+  m_Name: Knight_White
   m_Graph: {fileID: 114350483966674976}
   m_ShaderSources:
   - compute: 1
@@ -246,7 +246,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 1]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/VFX_Knight_White/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Knight_White/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -908,7 +908,7 @@ VisualEffectResource:
       }\n        {\n            SetAttribute_F0142CB9( /*inout */attributes.lifetime,
       (float)2);\n        }\n        {\n            AttributeFromMap_6F6C36D5( /*inout
       */attributes.position, attributes.particleId, GetVFXSampler(attributeMap_c,
-      samplerattributeMap_c), (uint)0, float3(0, 0, 0), float3(110, 110, 110));\n       
+      samplerattributeMap_c), (uint)0, float3(0, 0, 0), float3(108, 111, 108));\n       
       }\n        {\n            SetAttribute_F01429A3( /*inout */attributes.lifetime, 
       /*inout */attributes.seed, (float)1, (float)10);\n        }\n        \n\n\t\t\n#if
       VFX_USE_ALIVE_CURRENT\n        if (attributes.alive)\n#endif       \n       
@@ -1013,7 +1013,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 2]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/VFX_Knight_White/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Knight_White/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -1139,8 +1139,8 @@ VisualEffectResource:
       /*inout */attributes.axisX,  /*inout */attributes.axisY,  /*inout */attributes.axisZ);\n\t\t\t\t{\n\t\t\t\t   
       ScreenSpaceSize_1(attributes.position, attributes.size,  /*inout */attributes.scaleX, 
       /*inout */attributes.scaleY,  /*inout */attributes.scaleZ, (float)1);\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t   
-      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.0991011187, 0.102164917,
-      0.160377383));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
+      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.180624783, 0.194012329,
+      0.386792481));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
       o;\n\t\t\t\t\n\t\t\t\to.VFX_VARYING_UV.xy = i.uv;\n\t\t\t    \n\t\t\t    #if
       VFX_SHADERGRAPH_HAS_UV1\n\t\t\t    o.uv1 = i.uv1;\n\t\t\t    #endif\n\t\t\t   
       #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t    o.uv2 = i.uv2;\n\t\t\t    #endif\n\t\t\t   
@@ -1318,8 +1318,8 @@ VisualEffectResource:
       /*inout */attributes.axisX,  /*inout */attributes.axisY,  /*inout */attributes.axisZ);\n\t\t\t\t{\n\t\t\t\t   
       ScreenSpaceSize_1(attributes.position, attributes.size,  /*inout */attributes.scaleX, 
       /*inout */attributes.scaleY,  /*inout */attributes.scaleZ, (float)1);\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t   
-      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.0991011187, 0.102164917,
-      0.160377383));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
+      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.180624783, 0.194012329,
+      0.386792481));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
       o;\n\t\t\t\t\n\t\t\t\to.VFX_VARYING_UV.xy = i.uv;\n\t\t\t    \n\t\t\t    #if
       VFX_SHADERGRAPH_HAS_UV1\n\t\t\t    o.uv1 = i.uv1;\n\t\t\t    #endif\n\t\t\t   
       #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t    o.uv2 = i.uv2;\n\t\t\t    #endif\n\t\t\t   
@@ -1502,8 +1502,8 @@ VisualEffectResource:
       /*inout */attributes.axisX,  /*inout */attributes.axisY,  /*inout */attributes.axisZ);\n\t\t\t\t{\n\t\t\t\t   
       ScreenSpaceSize_1(attributes.position, attributes.size,  /*inout */attributes.scaleX, 
       /*inout */attributes.scaleY,  /*inout */attributes.scaleZ, (float)1);\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t   
-      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.0991011187, 0.102164917,
-      0.160377383));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
+      SetAttribute_FDD06EC7( /*inout */attributes.color, float3(0.180624783, 0.194012329,
+      0.386792481));\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t\t\t\n\t\t\t\tif (!attributes.alive)\n\t\t\t\t\treturn
       o;\n\t\t\t\t\n\t\t\t\to.VFX_VARYING_UV.xy = i.uv;\n\t\t\t    \n\t\t\t    #if
       VFX_SHADERGRAPH_HAS_UV1\n\t\t\t    o.uv1 = i.uv1;\n\t\t\t    #endif\n\t\t\t   
       #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t    o.uv2 = i.uv2;\n\t\t\t    #endif\n\t\t\t   
@@ -1873,7 +1873,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 25
           m_Value: 1.2
         - m_ExpressionIndex: 31
-          m_Value: 300
+          m_Value: 800
         - m_ExpressionIndex: 35
           m_Value: 3
         - m_ExpressionIndex: 39
@@ -1899,9 +1899,9 @@ VisualEffectResource:
         - m_ExpressionIndex: 20
           m_Value: {x: -0.007, y: -0.007, z: -0.007}
         - m_ExpressionIndex: 22
-          m_Value: {x: 110, y: 110, z: 110}
+          m_Value: {x: 108, y: 111, z: 108}
         - m_ExpressionIndex: 24
-          m_Value: {x: 0.09910112, y: 0.10216492, z: 0.16037738}
+          m_Value: {x: 0.18062478, y: 0.19401233, z: 0.38679248}
         - m_ExpressionIndex: 28
           m_Value: {x: 1, y: 1, z: 1}
         - m_ExpressionIndex: 32
@@ -6871,7 +6871,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 300
+      m_SerializableObject: 800
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -8015,7 +8015,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":110.0,"y":110.0,"z":110.0}'
+      m_SerializableObject: '{"x":108.0,"y":111.0,"z":108.0}'
     m_Space: 2147483647
   m_Property:
     name: valueScale
@@ -8539,7 +8539,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.09910111874341965,"y":0.10216491669416428,"z":0.1603773832321167}'
+      m_SerializableObject: '{"x":0.18062478303909303,"y":0.1940123289823532,"z":0.38679248094558718}'
     m_Space: 2147483647
   m_Property:
     name: Color
