@@ -11,8 +11,8 @@ public class Location : MonoBehaviour
     
     private void Update()
     {
-        Square = Calculate_Position.Square_Pixel(transform.position);
+        Square = Calculate_Position.Square_From_Pixel(transform.position);
         Pixel = transform.position;
-        Position = Calculate_Position.Position_Square(Square);
+        Position = Calculate_Position.Position_From_Square(Square);
     }
 }

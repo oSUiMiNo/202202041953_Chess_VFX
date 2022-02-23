@@ -59,7 +59,7 @@ public abstract class Piece : MonoBehaviour
     public bool Out_of_Borad;
     public bool CantMove(Vector2Int CanMove_Next)
     {
-        Vector3 Position = Calculate_Position.Position_Square(CanMove_Next);
+        Vector3 Position = Calculate_Position.Position_From_Square(CanMove_Next);
 
         Exist_Oponent = false;
         Exist_Player = false;

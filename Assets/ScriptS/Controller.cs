@@ -153,12 +153,12 @@ public class Controller : MonoBehaviour
         Piece piece = Piece_Selected.GetComponent<Piece>();
         for (int a = 0; a < piece.Square_Move(Square()).Count; a++)
         {
-            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_Square(piece.Square_Move(Square())[a])));
+            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Move(Square())[a])));
             pool_Highlight_Selected.Object_Discharge(Position());
         }
         for (int a = 0; a < piece.Square_Attack(Square()).Count; a++)
         {
-            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_Square(piece.Square_Attack(Square())[a])));
+            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Attack(Square())[a])));
         }
         
         Piece_Current = Piece_Selected;
@@ -453,14 +453,14 @@ public class Controller : MonoBehaviour
     //マス座標から実際に配置する位置を計算
     private Vector3 Position()
     {
-        Vector3 Position = Calculate_Position.Position_Square(Square());
+        Vector3 Position = Calculate_Position.Position_From_Square(Square());
         return Position;
     }
 
     //レイのhit位置から、マスの座標を判定する
     private Vector2Int Square()
     {
-        Vector2Int Square = Calculate_Position.Square_Pixel(Hit.point);
+        Vector2Int Square = Calculate_Position.Square_From_Pixel(Hit.point);
         return Square;
     }
 }

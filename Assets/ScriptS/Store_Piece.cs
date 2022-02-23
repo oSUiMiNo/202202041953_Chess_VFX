@@ -198,13 +198,13 @@ public class Store_Piece : MonoBehaviour
 
     private Vector3 Position(int X, int Y)
     {
-        Vector3 Position = Calculate_Position.Position_Square(Calculate_Position.Square(X, Y));
+        Vector3 Position = Calculate_Position.Position_From_Square(Calculate_Position.Square(X, Y));
         return Position;
     }
 
     private Vector2Int Square(Vector3 Pixel)
     {
-        Vector2Int Square = Calculate_Position.Square_Pixel(Pixel);
+        Vector2Int Square = Calculate_Position.Square_From_Pixel(Pixel);
         return Square;
     }
 

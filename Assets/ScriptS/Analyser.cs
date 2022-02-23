@@ -101,8 +101,8 @@ public class Analyser : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 point1 = hit.point;
-            Vector2Int gridPoint = Calculate_Position.Square_Pixel(point1);
-            Vector3 point2 = Calculate_Position.Position_Square(gridPoint);
+            Vector2Int gridPoint = Calculate_Position.Square_From_Pixel(point1);
+            Vector3 point2 = Calculate_Position.Position_From_Square(gridPoint);
 
             Analyse[0].text = "Grid  : " + gridPoint.ToString();
             Analyse[1].text = "Point1 : " + point1.ToString();
