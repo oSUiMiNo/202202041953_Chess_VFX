@@ -142,7 +142,7 @@ public class Controller : MonoBehaviour
     public void Selector_Tile()
     {
         pool_Highlight_Yellow.Object_Hide();
-        pool_Highlight_Yellow.Object_Discharge(Position());
+        pool_Highlight_Yellow.Object_Discharge(Position_Select());
     }
 
     
@@ -155,7 +155,7 @@ public class Controller : MonoBehaviour
         for (int a = 0; a < piece.Square_Move(Square_Select()).Count; a++)
         {
             pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Move(Square_Select())[a])));
-            pool_Highlight_Selected.Object_Discharge(Position());
+            pool_Highlight_Selected.Object_Discharge(Position_Select());
         }
         for (int a = 0; a < piece.Square_Attack(Square_Select()).Count; a++)
         {
@@ -462,29 +462,44 @@ public class Controller : MonoBehaviour
     }
 
 
-    //マス座標から実際に配置する位置を計算
-    private Vector3 Position()
-    {
-        Vector3 Position = Calculate_Position.Position_From_Square(Square_Select());
-        return Position;
-    }
-
-    //レイのhit位置から、マスの座標を判定する
+    
+    
+    //マウスでの選択から諸一の計算
     private Vector2Int Square_Select()
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Hit.point);
         return Square;
     }
+  
+    private Vector3 Position_Select()
+    {
+        Vector3 Position = Calculate_Position.Position_From_Square(Square_Select());
+        return Position;
+    }
 
+    private Vector3 Plot_Select(int x, int y)
+    {
+        Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position_Select())[x, y];
+        return Plot;
+    }
+
+
+    //駒を指定して諸位置の計算
     private Vector2Int Square_Piece(GameObject Piece)
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Piece.transform.position);
         return Square;
     }
 
-    private Vector3 Plot(int x, int y)
+    private Vector3 Position_Piece(GameObject Piece)
     {
-        Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position())[x, y];
+        Vector3 Position = Calculate_Position.Position_From_Square(Square_Piece(Piece));
+        return Position;
+    }
+
+    private Vector3 Plot_Piece(GameObject Piece, int x, int y)
+    {
+        Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position_Piece(Piece))[x, y];
         return Plot;
     }
 }
