@@ -152,14 +152,14 @@ public class Controller : MonoBehaviour
         Piece_Selected.transform.GetChild(1).gameObject.GetComponent<Renderer>().enabled = true;
         
         Piece piece = Piece_Selected.GetComponent<Piece>();
-        for (int a = 0; a < piece.Square_Move(Square()).Count; a++)
+        for (int a = 0; a < piece.Square_Move(Square_Select()).Count; a++)
         {
-            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Move(Square())[a])));
+            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Move(Square_Select())[a])));
             pool_Highlight_Selected.Object_Discharge(Position());
         }
-        for (int a = 0; a < piece.Square_Attack(Square()).Count; a++)
+        for (int a = 0; a < piece.Square_Attack(Square_Select()).Count; a++)
         {
-            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Attack(Square())[a])));
+            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Attack(Square_Select())[a])));
         }
         
         Piece_Current = Piece_Selected;
@@ -200,7 +200,7 @@ public class Controller : MonoBehaviour
     {
         Select_Animation(Piece_Current);
 
-        store_Piece.Piece_Square(Square()).SetActive(false);
+        store_Piece.Piece_Square(Square_Select()).SetActive(false);
 
         Piece piece = Piece_Current.GetComponent<Piece>();
         if (piece.type == PieceType.Pawn)
@@ -217,7 +217,10 @@ public class Controller : MonoBehaviour
     public bool Aniamtion_Active;
     Animator animator;
     Piece_State PieceState;
-    Vector3 D;
+    Vector2Int D;
+    //Vector3 D;
+    float DX;
+    float DY;
     public void Select_Animation(GameObject Piece_Current)
     {
 
@@ -233,12 +236,18 @@ public class Controller : MonoBehaviour
 
 
         //駒の、方向の判定 & アニメーションフラグの指定
-        Vector3 Delta = Position() - Piece_Current.transform.position;
+        Vector2Int Delta = Square_Select() - Square_Piece(Piece_Current);
+        int DeltaX = Delta.x;
+        int DeltaY = Delta.y;
+
         //Debug.Log("Delta : " + Delta);
 
-        D = Delta / 2;
+
+        D = Delta;
+        DX = D.x;
+        DY = D.y;
         //ナイト
-        if (D.x == 1 && D.z == 2)
+        if (DX == 1 && DY == 2)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(1, 2)";
@@ -246,7 +255,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == 2 && D.z == 1)
+        else if (DX == 2 && DY == 1)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(2, 1)";
@@ -254,7 +263,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == 2 && D.z == -1)
+        else if (DX == 2 && DY == -1)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(2, -1)";
@@ -262,7 +271,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == 1 && D.z == -2)
+        else if (DX == 1 && DY == -2)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(1, -2)";
@@ -270,7 +279,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == -1 && D.z == -2)
+        else if (DX == -1 && DY == -2)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-1, -2)";
@@ -278,7 +287,7 @@ public class Controller : MonoBehaviour
 
             return;
         }
-        else if (D.x == -2 && D.z == -1)
+        else if (DX == -2 && DY == -1)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-2, -1)";
@@ -286,7 +295,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == -2 && D.z == 1)
+        else if (DX == -2 && DY == 1)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-2, 1)";
@@ -294,7 +303,7 @@ public class Controller : MonoBehaviour
             Delay = 3;
             return;
         }
-        else if (D.x == -1 && D.z == 2)
+        else if (DX == -1 && DY == 2)
         {
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-1, 2)";
@@ -308,68 +317,70 @@ public class Controller : MonoBehaviour
             for (int a = 1; a < 16; a++)
             {
                 D = Delta / a;
+                DX = D.x;
+                DY = D.y;
                 //Debug.Log("D : " + D);
                 //まっすぐ
-                if (D.x == 1 && D.z == 0)
+                if (DX == 1 && DY == 0)
                 {
-                    PieceState.Times = Delta.x / 2;
+                    PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, 0)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == -1 && D.z == 0)
+                else if (DX == -1 && DY == 0)
                 {
-                    PieceState.Times = Delta.x / 2 * -1;
+                    PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, 0)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == 0 && D.z == 1)
+                else if (DX == 0 && DY == 1)
                 {
-                    PieceState.Times = Delta.z / 2;
+                    PieceState.Times = DeltaY;
                     PieceState.Flag1 = "(0, 1)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == 0 && D.z == -1)
+                else if (DX == 0 && DY == -1)
                 {
-                    PieceState.Times = Delta.z / 2 * -1;
+                    PieceState.Times = DeltaY * -1;
                     PieceState.Flag1 = "(0, -1)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
                 //斜め
-                else if (D.x == 1 && D.z == 1)
+                else if (DX == 1 && DY == 1)
                 {
-                    PieceState.Times = Delta.x / 2;
+                    PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, 1)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == 1 && D.z == -1)
+                else if (DX == 1 && DY == -1)
                 {
-                    PieceState.Times = Delta.x / 2;
+                    PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, -1)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == -1 && D.z == 1)
+                else if (DX == -1 && DY == 1)
                 {
-                    PieceState.Times = Delta.x / 2 * -1;
+                    PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, 1)";
                     PieceState.Bool1 = true;
                     Delay = a;
                     break;
                 }
-                else if (D.x == -1 && D.z == -1)
+                else if (DX == -1 && DY == -1)
                 {
-                    PieceState.Times = Delta.x / 2 * -1;
+                    PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, -1)";
                     PieceState.Bool1 = true;
                     Delay = a;
@@ -393,19 +404,19 @@ public class Controller : MonoBehaviour
         
         int X = Mathf.FloorToInt(Piece_Current.transform.position.x);
         int Y = Mathf.FloorToInt(Piece_Current.transform.position.z);
-        if (D.x == 1 || D.x == 2)
+        if (DX == 1 || DX == 2)
         {
             X = Mathf.FloorToInt(Piece_Current.transform.position.x);
         }
-        if(D.z == 1 || D.z == 2)
+        if(DY == 1 || DY == 2)
         {
             Y = Mathf.FloorToInt(Piece_Current.transform.position.z);
         }
-        if (D.x == -1 || D.x == -2)
+        if (DX == -1 || DX == -2)
         {
             X = Mathf.FloorToInt(Piece_Current.transform.position.x + 0.8f);
         }
-        if (D.z == -1 || D.z == -2)
+        if (DY == -1 || DY == -2)
         {
             Y = Mathf.FloorToInt(Piece_Current.transform.position.z + 0.8f);
         }
@@ -454,14 +465,20 @@ public class Controller : MonoBehaviour
     //マス座標から実際に配置する位置を計算
     private Vector3 Position()
     {
-        Vector3 Position = Calculate_Position.Position_From_Square(Square());
+        Vector3 Position = Calculate_Position.Position_From_Square(Square_Select());
         return Position;
     }
 
     //レイのhit位置から、マスの座標を判定する
-    private Vector2Int Square()
+    private Vector2Int Square_Select()
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Hit.point);
+        return Square;
+    }
+
+    private Vector2Int Square_Piece(GameObject Piece)
+    {
+        Vector2Int Square = Calculate_Position.Square_From_Pixel(Piece.transform.position);
         return Square;
     }
 
