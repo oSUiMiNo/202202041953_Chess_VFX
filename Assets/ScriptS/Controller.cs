@@ -138,6 +138,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+
     public void Selector_Tile()
     {
         pool_Highlight_Yellow.Object_Hide();
@@ -462,5 +463,11 @@ public class Controller : MonoBehaviour
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Hit.point);
         return Square;
+    }
+
+    private Vector3 Plot(int x, int y)
+    {
+        Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position())[x, y];
+        return Plot;
     }
 }
