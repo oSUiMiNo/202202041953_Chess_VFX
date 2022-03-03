@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: White_Rook_VFX
+  m_Name: Pawn_VFX
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
   m_Children:
@@ -172,7 +172,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: White_Rook_VFX
+  m_Name: Pawn_VFX
   m_Graph: {fileID: 114350483966674976}
   m_ShaderSources:
   - compute: 1
@@ -358,7 +358,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 1]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/White_Rook_VFX/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Pawn_VFX/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -1125,7 +1125,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 2]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/White_Rook_VFX/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Pawn_VFX/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -2081,7 +2081,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 29
           m_Value: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
         - m_ExpressionIndex: 47
-          m_Value: {fileID: 6918954641851045129, guid: 1c1e7b99bf8fe7d49a6815ecc919aede,
+          m_Value: {fileID: 6918954641851045129, guid: 66ae69b5589406548935a84f944c27f1,
             type: 3}
         - m_ExpressionIndex: 31
           m_Value: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614685}
   - {fileID: 8926484042661614686}
   - {fileID: 8926484042661614687}
-  Asset: {fileID: -3256353808211938606, guid: 1c1e7b99bf8fe7d49a6815ecc919aede, type: 3}
+  Asset: {fileID: -3256353808211938606, guid: 66ae69b5589406548935a84f944c27f1, type: 3}
 --- !u!114 &8926484042661614596
 MonoBehaviour:
   m_ObjectHideFlags: 0
