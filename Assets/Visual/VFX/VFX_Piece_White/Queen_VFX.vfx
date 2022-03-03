@@ -18,9 +18,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 783
+    x: 752
     y: 62
-    width: 1477
+    width: 1508
     height: 1940
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Bishop_White
+  m_Name: White_Queen_VFX
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
   m_Children:
@@ -97,6 +97,19 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
+  - name: Light_Scale
+    path: Light_Scale
+    tooltip: 
+    sheetType: m_Vector3f
+    realType: Vector3
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"x":110.0,"y":110.0,"z":110.0}'
+    min: -Infinity
+    max: Infinity
+    descendantCount: 0
   - name: Shadow_Quantity
     path: Shadow_Quantity
     tooltip: 
@@ -149,19 +162,6 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  - name: Light_Scale
-    path: Light_Scale
-    tooltip: 
-    sheetType: m_Vector3f
-    realType: Vector3
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":110.0,"y":110.0,"z":110.0}'
-    min: -Infinity
-    max: Infinity
-    descendantCount: 0
   m_GraphVersion: 4
   m_saved: 1
   m_SubgraphDependencies: []
@@ -172,7 +172,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bishop_White
+  m_Name: White_Queen_VFX
   m_Graph: {fileID: 114350483966674976}
   m_ShaderSources:
   - compute: 1
@@ -358,7 +358,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 1]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/Bishop_White/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/White_Queen_VFX/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -1125,7 +1125,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 2]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/Bishop_White/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/White_Queen_VFX/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -2081,7 +2081,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 29
           m_Value: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
         - m_ExpressionIndex: 47
-          m_Value: {fileID: 6918954641851045129, guid: dd8e143694eeabd478dc03d491b6584a,
+          m_Value: {fileID: 6918954641851045129, guid: 71bdd508d15065e4b8ffff8ee5de4221,
             type: 3}
         - m_ExpressionIndex: 31
           m_Value: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
@@ -3767,7 +3767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 783, y: 676}
+  m_UIPosition: {x: 752, y: 684}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614685}
   - {fileID: 8926484042661614686}
   - {fileID: 8926484042661614687}
-  Asset: {fileID: -3256353808211938606, guid: dd8e143694eeabd478dc03d491b6584a, type: 3}
+  Asset: {fileID: -3256353808211938606, guid: 71bdd508d15065e4b8ffff8ee5de4221, type: 3}
 --- !u!114 &8926484042661614596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10114,7 +10114,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614867}
   m_ExposedName: Shadow_Color
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
@@ -10327,7 +10327,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614887}
   m_ExposedName: Shadow_Size
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 6
   m_Category: 
   m_Min:
     m_Type:
@@ -10481,7 +10481,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614906}
   m_ExposedName: Shadow_Quantity
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 4
   m_Category: 
   m_Min:
     m_Type:
@@ -10635,7 +10635,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614928}
   m_ExposedName: Shadow_Scale
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 7
   m_Category: 
   m_Min:
     m_Type:
@@ -10814,7 +10814,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614933}
   m_ExposedName: Light_Scale
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:
