@@ -14,6 +14,8 @@ public class Controller : MonoBehaviour
 
     
 
+
+
     [SerializeField] GameObject Null_Object;
     public Pool_Highlight_Yellow pool_Highlight_Yellow = null;
     public Pool_Highlight_Blue pool_Highlight_Blue = null;
@@ -22,6 +24,7 @@ public class Controller : MonoBehaviour
     public GameObject Pool;
     public Store_Piece store_Piece = null;
     public Text text;
+    public ChessAgent ChessAgent;
     private void Component()
     {
         Pool = GameObject.Find("Pool");
@@ -31,16 +34,24 @@ public class Controller : MonoBehaviour
         pool_Highlight_Selected = Pool.GetComponent<Pool_Highlight_Selected>();
         store_Piece = GameObject.Find("Store_Piece").GetComponent<Store_Piece>();
         text = GameObject.Find("Inform").GetComponent<Text>();
+        ChessAgent = GameObject.Find("ChessAgent").GetComponent<ChessAgent>();
     }
 
 
-
+    public bool AIMode;
 
     public float Times;
     public float StateTime;
     public void Update()
     {
-        Pointer();
+        if(ChessAgent.enabled == false)
+        {
+            Human();
+        }
+        else if (ChessAgent.enabled == true)
+        {
+            Agent();
+        }
 
         if (animator != null && animator.enabled == true)
         {
@@ -61,17 +72,14 @@ public class Controller : MonoBehaviour
     }
 
 
-
     //レイキャスト
     public Ray ray;
-    public RaycastHit[] Hit_All;  //rayが衝突した全オブジェクトの情報
-    public RaycastHit Hit;
-    public bool Point, Click;
+    RaycastHit Hit;
+    public bool Point, Click, Click_AI;
     //public string Tag;
-    private void Pointer()
+    private void Human()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Hit_All = Physics.RaycastAll(ray);
         Point = Physics.Raycast(ray, out Hit);
         Click = Input.GetMouseButtonDown(0);
 
@@ -80,14 +88,24 @@ public class Controller : MonoBehaviour
             GameObject HitObject = Hit.collider.gameObject;
             string Tag = HitObject.tag;
             Slect_Selector(HitObject, Tag);
-
-            //foreach (RaycastHit Hit in Hit_All)
-            //{
-            //    Tag = Hit.collider.gameObject.tag;
-            //    //Debug.Log(Tag);
-            //    Slect_Selector();
-            //}
         }
+    }
+
+    private void Agent()
+    {
+        ray = ChessAgent.ray;
+        Hit = ChessAgent.Hit;
+        Point = ChessAgent.Point;
+        Click = true;
+
+        if (Point)
+        {
+            GameObject HitObject = Hit.collider.gameObject;
+            string Tag = HitObject.tag;
+            Slect_Selector(HitObject, Tag);
+        }
+
+        Click = false;
     }
 
 
@@ -97,7 +115,7 @@ public class Controller : MonoBehaviour
 
 
     public GameObject Piece_Selected, Piece_Current = null;
-    private void Slect_Selector(GameObject HitObject, string Tag)
+    public void Slect_Selector(GameObject HitObject, string Tag)
     {
         Selector_Tile();
 
@@ -213,7 +231,7 @@ public class Controller : MonoBehaviour
 
 
     //動かすアニメーションの選択
-    Camera_State CameraState;
+    public Camera_State cameraState;
     public bool Aniamtion_Active;
     Animator animator;
     Piece_State PieceState;
@@ -225,7 +243,7 @@ public class Controller : MonoBehaviour
     {
 
         //カメラのアニメーション
-        CameraState = Camera.main.GetComponent<Animator>().GetBehaviour<Camera_State>();
+        cameraState = Camera.main.GetComponent<Animator>().GetBehaviour<Camera_State>();
 
         //駒のアニメーション
         Aniamtion_Active = true;  //Currentフラグのアップデート等を1回しか行いたくないが、ステートマシーンビヘイビアのTimesを使うと、アップデートが二回実行されてしまうのでこのフラグで1回しか実行できないようにする。
@@ -447,18 +465,18 @@ public class Controller : MonoBehaviour
 
         if (Turn == true)
         {
-            CameraState.Turn_Black = true;
+            cameraState.Turn_Black = true;
         }
         if (Turn == false)
         {
-            CameraState.Turn_White = true;
+            cameraState.Turn_White = true;
         }
         Invoke("A", 2f);
     }
     public void A()
     {
-        CameraState.Turn_White = false;
-        CameraState.Turn_Black = false;
+        cameraState.Turn_White = false;
+        cameraState.Turn_Black = false;
     }
 
 
