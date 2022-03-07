@@ -13,7 +13,6 @@ public class Store_Piece : MonoBehaviour
 
 
 
-
     [SerializeField]private GameObject Null_Object;
     [SerializeField] public GameObject[,,] PieceS = new GameObject[2, 2, 8];
     [SerializeField] public Vector2Int[,,] Position_PieceS = new Vector2Int[2, 2, 8];
@@ -90,8 +89,6 @@ public class Store_Piece : MonoBehaviour
     }
 
 
-
-
     private void Store_PieceS()
     {
         PieceS = new GameObject[2, 2, 8]
@@ -148,7 +145,6 @@ public class Store_Piece : MonoBehaviour
     public void Store_Square_Piece(int category ,int color, int specific)
     {
         Position_PieceS[category, color, specific] = (Square(PieceS[category, color, specific].transform.position));
-        //return Position_PieceS[category, color, specific];
     }
 
     public void Init_Position(int Shift)
@@ -180,14 +176,13 @@ public class Store_Piece : MonoBehaviour
             {
                 for (int c = 0; c < 8; c++)
                 {
-                    if (Position_PieceS[a, b, c] == Square)
+                    if (Position_PieceS[a, b, c] == Square && PieceS[a, b, c].activeSelf == true)
                     {
                         return PieceS[a, b, c];
                     }
                 }
             }
         }
-        //return controller.Piece_Selected;
         return null;
     }
 
@@ -207,9 +202,4 @@ public class Store_Piece : MonoBehaviour
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Pixel);
         return Square;
     }
-
-    private void Attackdirection()
-    {
-        //駒の動きを作るときに考える。
-    } 
 }

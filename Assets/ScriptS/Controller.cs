@@ -48,10 +48,10 @@ public class Controller : MonoBehaviour
         {
             Human();
         }
-        else if (ChessAgent.enabled == true)
-        {
-            Agent();
-        }
+        //else if (ChessAgent.enabled == true)
+        //{
+        //    Agent();
+        //}
 
         if (animator != null && animator.enabled == true)
         {
@@ -63,8 +63,8 @@ public class Controller : MonoBehaviour
 
                 if (StateTime >= Times && Aniamtion_Active == true)
                 {
-                    Debug.Log("a");
-                    StartCoroutine(FixPosition());
+                    //Debug.Log("a");
+                    StartCoroutine(FixPosition_Piece());
                     Aniamtion_Active = false;
                 }
             }
@@ -77,7 +77,7 @@ public class Controller : MonoBehaviour
     RaycastHit Hit;
     public bool Point, Click, Click_AI;
     //public string Tag;
-    private void Human()
+    public void Human()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Point = Physics.Raycast(ray, out Hit);
@@ -91,7 +91,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private void Agent()
+    public void Agent()
     {
         ray = ChessAgent.ray;
         Hit = ChessAgent.Hit;
@@ -102,6 +102,7 @@ public class Controller : MonoBehaviour
         {
             GameObject HitObject = Hit.collider.gameObject;
             string Tag = HitObject.tag;
+            //Debug.Log(Tag);
             Slect_Selector(HitObject, Tag);
         }
 
@@ -123,6 +124,7 @@ public class Controller : MonoBehaviour
         {
             if (Tag == "PieceS_White" || Tag == "PieceS_Black" )
             {
+                //Debug.Log("Select_Selector Select");
                 DeSelector_Piece(Piece_Current);
                 Piece_Selected = HitObject;
                 Selector_Piece(Piece_Selected);
@@ -132,19 +134,21 @@ public class Controller : MonoBehaviour
             {
                 if(Hit.collider.gameObject.tag == "Highlight_Blue")
                 {
+                    //Debug.Log("Select_Selector Move");
                     DeSelector_Piece(Piece_Current);
                     Move_Piece(Piece_Current);
                     return;
                 }
                 else if(Hit.collider.gameObject.tag == "Highlight_Red")
                 {
+                    //Debug.Log("Select_Selector Attack");
                     DeSelector_Piece(Piece_Current);
                     Attack(Piece_Current);
                     return;
                 }
-                
                 else
                 {
+                    //Debug.Log("Select_Selector else");
                     DeSelector_Piece(Piece_Current);
                     return;
                 }
@@ -170,17 +174,20 @@ public class Controller : MonoBehaviour
         Piece_Selected.transform.GetChild(1).gameObject.GetComponent<Renderer>().enabled = true;
         
         Piece piece = Piece_Selected.GetComponent<Piece>();
-        for (int a = 0; a < piece.Square_Move(Square_Select()).Count; a++)
+        List<Vector2Int> SquareMove = piece.Square_Move(Square_Select());
+        List<Vector2Int> SquareAttack = piece.Square_Attack(Square_Select());
+        for (int a = 0; a < SquareMove.Count; a++)
         {
-            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Move(Square_Select())[a])));
+            pool_Highlight_Blue.Object_Discharge((Calculate_Position.Position_From_Square(SquareMove[a])));
             pool_Highlight_Selected.Object_Discharge(Position_Select());
         }
-        for (int a = 0; a < piece.Square_Attack(Square_Select()).Count; a++)
+        for (int a = 0; a < SquareAttack.Count; a++)
         {
-            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_From_Square(piece.Square_Attack(Square_Select())[a])));
+            pool_Highlight_Red.Object_Discharge((Calculate_Position.Position_From_Square(SquareAttack[a])));
         }
         
         Piece_Current = Piece_Selected;
+        //Debug.Log("Selector_Piece");
     }
     
     public void DeSelector_Piece(GameObject Piece_Current)
@@ -205,12 +212,13 @@ public class Controller : MonoBehaviour
         //store_Piece.Update_Square_Piece();
         //store_Piece.Update_Flag_Current();
 
-
         Piece piece = Piece_Current.GetComponent<Piece>();
         if (piece.type == PieceType.Pawn)
         {
             piece.first = false;
         }
+        
+        //Debug.Log("Move_Piece");
     }
 
     private int Delay; 
@@ -225,6 +233,8 @@ public class Controller : MonoBehaviour
         {
             piece.first = false;
         }
+        
+        Debug.Log("Attack");
     }
 
 
@@ -415,7 +425,7 @@ public class Controller : MonoBehaviour
 
 
     
-    public IEnumerator FixPosition()
+    public IEnumerator FixPosition_Piece()
     {
         yield return new WaitForSeconds(0.01f);
         animator.enabled = false;
@@ -461,13 +471,14 @@ public class Controller : MonoBehaviour
     }
     public void Change_Turn()
     {
+        Turn = !Turn;
         //Debug.Log("Turn was Changed is : " + Turn);
 
-        if (Turn == true)
+        if (Turn == false)
         {
             cameraState.Turn_Black = true;
         }
-        if (Turn == false)
+        if (Turn == true)
         {
             cameraState.Turn_White = true;
         }
@@ -477,25 +488,51 @@ public class Controller : MonoBehaviour
     {
         cameraState.Turn_White = false;
         cameraState.Turn_Black = false;
+
+        Invoke("Fix_Environment", 2);
     }
 
+    public void Fix_Environment()
+    {
+        FixPosition_Camera();
+        if (ChessAgent.enabled == true)
+        {
+            ChessAgent.UpdateAgent();
+        }
+        //Debug.Log("Envilonment was Fixed");
+    }
+
+    public void FixPosition_Camera()
+    {
+        if (Turn == true)
+        {
+            Camera.main.GetComponent<Transform>().position = new Vector3(-3, 12, -12);
+            //Debug.Log("Camera was Fixed");
+        }
+        else
+        {
+            Camera.main.GetComponent<Transform>().position = new Vector3(3, 12, 12);
+            //Debug.Log("Camera was Fixed");
+        }
+    }
+ 
 
     
     
     //マウスでの選択から諸一の計算
-    private Vector2Int Square_Select()
+    public Vector2Int Square_Select()
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Hit.point);
         return Square;
     }
   
-    private Vector3 Position_Select()
+    public Vector3 Position_Select()
     {
         Vector3 Position = Calculate_Position.Position_From_Square(Square_Select());
         return Position;
     }
 
-    private Vector3 Plot_Select(int x, int y)
+    public Vector3 Plot_Select(int x, int y)
     {
         Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position_Select())[x, y];
         return Plot;
@@ -503,19 +540,19 @@ public class Controller : MonoBehaviour
 
 
     //駒を指定して諸位置の計算
-    private Vector2Int Square_Piece(GameObject Piece)
+    public Vector2Int Square_Piece(GameObject Piece)
     {
         Vector2Int Square = Calculate_Position.Square_From_Pixel(Piece.transform.position);
         return Square;
     }
 
-    private Vector3 Position_Piece(GameObject Piece)
+    public Vector3 Position_Piece(GameObject Piece)
     {
         Vector3 Position = Calculate_Position.Position_From_Square(Square_Piece(Piece));
         return Position;
     }
 
-    private Vector3 Plot_Piece(GameObject Piece, int x, int y)
+    public Vector3 Plot_Piece(GameObject Piece, int x, int y)
     {
         Vector3 Plot = Calculate_Position.PlotPosition_From_Position(Position_Piece(Piece))[x, y];
         return Plot;

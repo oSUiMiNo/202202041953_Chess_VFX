@@ -54,9 +54,9 @@ public abstract class Piece : MonoBehaviour
 
 
 
-    public bool Exist_Player;
-    public bool Exist_Oponent;
-    public bool Out_of_Borad;
+    [SerializeField] public bool Exist_Player;
+    [SerializeField] public bool Exist_Oponent;
+    [SerializeField] public bool Out_of_Borad;
     public bool CantMove(Vector2Int CanMove_Next)
     {
         Vector3 Position = Calculate_Position.Position_From_Square(CanMove_Next);
@@ -91,8 +91,10 @@ public abstract class Piece : MonoBehaviour
         {
             return false;
         }
-
-        return true;
+        else
+        {
+            return true;
+        }
     }
 
 
