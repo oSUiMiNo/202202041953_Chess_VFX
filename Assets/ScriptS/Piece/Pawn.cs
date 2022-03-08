@@ -27,7 +27,7 @@ public class Pawn : Piece
         }
         else
         {
-            Debug.Log("Pawn can move 0squares");
+            //Debug.Log("Pawn can move 0squares");
             return CanMove;
         }
 
@@ -37,7 +37,7 @@ public class Pawn : Piece
         }
         else
         {
-            Debug.Log("Pawn can move 1squares");
+            //Debug.Log("Pawn can move 1squares");
             return CanMove;
         }
         if (first == false)
@@ -45,7 +45,7 @@ public class Pawn : Piece
             CanMove.Remove(Move2);
         }
 
-        Debug.Log("Pawn con move " +CanMove.Count+ " squares");
+        //Debug.Log("Pawn con move " +CanMove.Count+ " squares");
         return CanMove;
     }
 
@@ -70,14 +70,14 @@ public class Pawn : Piece
         CantMove(MoveR);
         if (!Out_of_Borad && !Exist_Player && Exist_Oponent)
         {
-            Debug.Log("Pawn can Attack R");
+            //Debug.Log("Pawn can Attack R");
             Attack.Add(MoveR);
         }
 
         CantMove(MoveL);
         if (!Out_of_Borad && !Exist_Player && Exist_Oponent)
         {
-            Debug.Log("Pawn can Attack L");
+            //Debug.Log("Pawn can Attack L");
             Attack.Add(MoveL);
         }
         return Attack;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ChessAgent : MonoBehaviour
 {
     public void Start()
@@ -33,28 +34,23 @@ public class ChessAgent : MonoBehaviour
 
     System.DateTime date = System.DateTime.Now;
     public bool action = false;
-    public int index_White = 0;
-    public int index_Black = 0;
-    public GameObject[] White = null;
-    public GameObject[] Black = null;
+    public List<GameObject> White, Black = null;
     public void InitializeAgent()
     {
-        White = new GameObject[store_Piece.PieceS.Length / 2];
-        Black = new GameObject[store_Piece.PieceS.Length / 2];
+        White = new List<GameObject> { };
+        Black = new List<GameObject> { };
         foreach (var item in store_Piece.PieceS)
         {
             Piece EachPiece = item.GetComponent<Piece>();
                 if (EachPiece.color == PicceColor.White)
                 {
-                    index_White++;
-                    White[index_White - 1] = item;
+                    White.Add(item);
                 }
                 else if (EachPiece.color == PicceColor.Black)
                 {
-                    index_Black++;
-                    Black[index_Black - 1] = item;
+                    Black.Add(item);
                 }
-                //else { Debug.Log("なんでやねん"); }
+                else { Debug.Log("color設定し忘れてるよ。"); }
         }
 
         int seed = date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + date.Millisecond;
@@ -65,32 +61,28 @@ public class ChessAgent : MonoBehaviour
 
     public void UpdateAgent()
     {
-        index_White = index_Black = 0;
         foreach (var item in store_Piece.PieceS)
         {
-            if (item.activeSelf == true)
+            if (item.activeSelf == false)
             {
                 Piece EachPiece = item.GetComponent<Piece>();
                 if (EachPiece.color == PicceColor.White)
                 {
-                    index_White++;
-                    White[index_White - 1] = item;
+                    White.Remove(item);
                 }
                 else if (EachPiece.color == PicceColor.Black)
                 {
-                    index_Black++;
-                    Black[index_Black - 1] = item;
+                    Black.Remove(item);
                 }
-                //else { Debug.Log("なんでやねん"); }
+                else { Debug.Log("color設定し忘れてるよ。"); }
             }
         }
         action = true;
 
-        Debug.Log("UpdateAgent");
+        //Debug.Log("UpdateAgent");
     }
 
 
-    int a = 0;
     public Ray ray;
     public RaycastHit Hit;
     public string Tag;
@@ -110,7 +102,7 @@ public class ChessAgent : MonoBehaviour
     public IEnumerator Piece_Action()
     {
         piece = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         //Debug.Log("1  " + "Piece_Action IN");
 
         //駒選択
@@ -120,18 +112,20 @@ public class ChessAgent : MonoBehaviour
             //Debug.Log("2  " + "1回目");
 
             PSelection = Piece_Select();
-            ray = new Ray(Camera.main.transform.position, PSelection.transform.position - Camera.main.transform.position);
+            ray = new Ray(new Vector3(0, 15, 0), PSelection.transform.position - new Vector3(0, 15 ,0));
             Point = Physics.Raycast(ray, out Hit);
-            Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 7f, true);
+            //Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 0.5f, true);
+            //Debug.Log(Hit.collider.gameObject.name);
 
             while (Judge(PSelection) == false)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0f);
                 
                 PSelection = Piece_Select();
-                ray = new Ray(Camera.main.transform.position, PSelection.transform.position - Camera.main.transform.position);
+                ray = new Ray(new Vector3(0, 15, 0), PSelection.transform.position - new Vector3(0, 15, 0));
                 Point = Physics.Raycast(ray, out Hit);
-                Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 7f, true);
+                //Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 0.5f, true);
+                //Debug.Log(Hit.collider.gameObject.name);
             }
             //Debug.Log("5  " + "Ultimate Selection is : " + PSelection);
         }
@@ -147,46 +141,24 @@ public class ChessAgent : MonoBehaviour
 
     public IEnumerator Move_Action()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         //Debug.Log("6  " + "Move_Action IN");
 
         //行先選択
         MSelection = Move_Select();
 
-        ray = new Ray(Camera.main.transform.position, MSelection - Camera.main.transform.position);
+        //ray = new Ray(Camera.main.transform.position, MSelection - Camera.main.transform.position);
+        ray = new Ray(new Vector3(0, 15, 0), MSelection - new Vector3(0, 15, 0));
         Point = Physics.Raycast(ray, out Hit);
-        Debug.DrawRay(ray.origin, ray.direction * 50, Color.green, 6, true);
+        //Debug.DrawRay(ray.origin, ray.direction * 50, Color.green, 0.5f, true);
         //foreach (var item in Physics.RaycastAll(ray))
         //{
         //Debug.Log("Hitした : " + item.transform.name);
         //}
-
         if(Point == false)
         {
             Debug.Log("   " + "No Hit");
-
-            ray = new Ray(Camera.main.transform.position, PSelection.transform.position - Camera.main.transform.position);
-            Point = Physics.Raycast(ray, out Hit);
-            Debug.DrawRay(ray.origin, ray.direction * 50, Color.red, 7f, true);
-            
-            Debug.Log("   " + "Do Start");
-            Do();
-            Debug.Log("   " + "Do End");
         }
-
-        //while (Point == false)
-        //{
-        //    MSelection = Move_Select();
-        
-        //    ray = new Ray(Camera.main.transform.position, MSelection - Camera.main.transform.position);
-        //    Point = Physics.Raycast(ray, out Hit);
-        //    Debug.DrawRay(ray.origin, ray.direction * 50, Color.green, 6, false);
-        //}
-        //if (Point)
-        //{
-        //    Tag = Hit.collider.gameObject.tag;
-        //}
-        //Debug.Log(Hit.collider.gameObject.tag);
 
         //Debug.Log("   " + "Do Start");
         Do();
@@ -201,12 +173,12 @@ public class ChessAgent : MonoBehaviour
         GameObject Selection;
         if (controller.Turn == true)
         {
-            Selection = White[Random.Range(0, White.Length)];
+            Selection = White[Random.Range(0, White.Count)];
             //Debug.Log(Selection);
         }
         else if (controller.Turn == false)
         {
-            Selection = Black[Random.Range(0, Black.Length)];
+            Selection = Black[Random.Range(0, Black.Count)];
             //Debug.Log(Selection);
         }
         else
@@ -230,7 +202,6 @@ public class ChessAgent : MonoBehaviour
         Vector2Int square = Calculate_Position.Square_From_Pixel(Selection.transform.position);
         MoveSquare = piece.Square_Move(square);
         AttackSquare = piece.Square_Attack(square);
-
         //Debug.Log(MoveSquare.Count + "," + AttackSquare.Count);
 
         if ((MoveSquare.Count >= 1 || AttackSquare.Count >= 1) && Tag != null)
@@ -252,7 +223,6 @@ public class ChessAgent : MonoBehaviour
         Vector2Int Selection;
 
         int Move_or_Attack = Random.Range(0, 2);
-        //Debug.Log(Move_or_Attack);
 
         if((Move_or_Attack == 0 || AttackSquare.Count < 1) && MoveSquare.Count >= 1)
         {

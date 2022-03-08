@@ -122,6 +122,9 @@ public class Controller : MonoBehaviour
 
         if (Click)
         {
+            //Debug.DrawRay(ray.origin, ray.direction * 50, Color.blue, 3f, true);
+            //Debug.Log(Hit.collider.gameObject.name);
+
             if (Tag == "PieceS_White" || Tag == "PieceS_Black" )
             {
                 //Debug.Log("Select_Selector Select");
@@ -205,12 +208,17 @@ public class Controller : MonoBehaviour
     
     public void Move_Piece(GameObject Piece_Current)
     {
-        Select_Animation(Piece_Current);
-
-        //Piece_Current.transform.position = Position();
-        
-        //store_Piece.Update_Square_Piece();
-        //store_Piece.Update_Flag_Current();
+        if(ChessAgent.enabled == false)
+        {
+            Select_Animation(Piece_Current);
+        }
+        else
+        {
+            Piece_Current.transform.position = Position_Select();
+            store_Piece.Update_Square_Piece();
+            store_Piece.Update_Flag_Current();
+            StartCoroutine(Change_Turn());
+        }
 
         Piece piece = Piece_Current.GetComponent<Piece>();
         if (piece.type == PieceType.Pawn)
@@ -221,12 +229,23 @@ public class Controller : MonoBehaviour
         //Debug.Log("Move_Piece");
     }
 
-    private int Delay; 
+
     public void Attack(GameObject Piece_Current)
     {
-        Select_Animation(Piece_Current);
-
         store_Piece.Piece_Square(Square_Select()).SetActive(false);
+
+        if (ChessAgent.enabled == false)
+        {
+            Select_Animation(Piece_Current);
+        }
+        else
+        {
+            Piece_Current.transform.position = Position_Select();
+            store_Piece.Update_Square_Piece();
+            store_Piece.Update_Flag_Current();
+            StartCoroutine(Change_Turn());
+        }
+
 
         Piece piece = Piece_Current.GetComponent<Piece>();
         if (piece.type == PieceType.Pawn)
@@ -234,7 +253,7 @@ public class Controller : MonoBehaviour
             piece.first = false;
         }
         
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
     }
 
 
@@ -280,7 +299,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(1, 2)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == 2 && DY == 1)
@@ -288,7 +306,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(2, 1)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == 2 && DY == -1)
@@ -296,7 +313,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(2, -1)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == 1 && DY == -2)
@@ -304,7 +320,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(1, -2)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == -1 && DY == -2)
@@ -320,7 +335,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-2, -1)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == -2 && DY == 1)
@@ -328,7 +342,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-2, 1)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         else if (DX == -1 && DY == 2)
@@ -336,7 +349,6 @@ public class Controller : MonoBehaviour
             PieceState.Times = 1;
             PieceState.Flag1 = "K(-1, 2)";
             PieceState.Bool1 = true;
-            Delay = 3;
             return;
         }
         //ナイト以外
@@ -354,7 +366,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, 0)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == -1 && DY == 0)
@@ -362,7 +373,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, 0)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == 0 && DY == 1)
@@ -370,7 +380,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaY;
                     PieceState.Flag1 = "(0, 1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == 0 && DY == -1)
@@ -378,7 +387,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaY * -1;
                     PieceState.Flag1 = "(0, -1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 //斜め
@@ -387,7 +395,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, 1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == 1 && DY == -1)
@@ -395,7 +402,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX;
                     PieceState.Flag1 = "(1, -1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == -1 && DY == 1)
@@ -403,7 +409,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, 1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 else if (DX == -1 && DY == -1)
@@ -411,7 +416,6 @@ public class Controller : MonoBehaviour
                     PieceState.Times = DeltaX * -1;
                     PieceState.Flag1 = "(-1, -1)";
                     PieceState.Bool1 = true;
-                    Delay = a;
                     break;
                 }
                 //else
@@ -427,7 +431,7 @@ public class Controller : MonoBehaviour
     
     public IEnumerator FixPosition_Piece()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.2f);
         animator.enabled = false;
         
         int X = Mathf.FloorToInt(Piece_Current.transform.position.x);
@@ -455,9 +459,9 @@ public class Controller : MonoBehaviour
 
         store_Piece.Update_Square_Piece();
         store_Piece.Update_Flag_Current();
-        
+
         //ターン交代
-        Change_Turn();
+        StartCoroutine(Change_Turn());
     }
 
 
@@ -469,38 +473,35 @@ public class Controller : MonoBehaviour
     {
         Turn = true;
     }
-    public void Change_Turn()
+    public IEnumerator Change_Turn()
     {
         Turn = !Turn;
-        //Debug.Log("Turn was Changed is : " + Turn);
 
-        if (Turn == false)
+        if(ChessAgent.enabled == false)
         {
-            cameraState.Turn_Black = true;
+            if (Turn == false)
+            {
+                cameraState.Turn_Black = true;
+            }
+            if (Turn == true)
+            {
+                cameraState.Turn_White = true;
+            }
+            yield return new WaitForSeconds(2f);
+            cameraState.Turn_White = false;
+            cameraState.Turn_Black = false;
+
+            yield return new WaitForSeconds(2f);
+            FixPosition_Camera();
         }
-        if (Turn == true)
+        else
         {
-            cameraState.Turn_White = true;
-        }
-        Invoke("A", 2f);
-    }
-    public void A()
-    {
-        cameraState.Turn_White = false;
-        cameraState.Turn_Black = false;
-
-        Invoke("Fix_Environment", 2);
-    }
-
-    public void Fix_Environment()
-    {
-        FixPosition_Camera();
-        if (ChessAgent.enabled == true)
-        {
+            yield return new WaitForSeconds(0f);
             ChessAgent.UpdateAgent();
         }
-        //Debug.Log("Envilonment was Fixed");
+        //Debug.Log("Turn was Changed is : " + Turn);
     }
+
 
     public void FixPosition_Camera()
     {

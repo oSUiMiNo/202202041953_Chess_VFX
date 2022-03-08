@@ -100,7 +100,7 @@ public abstract class Piece : MonoBehaviour
 
     private void Update()
     {
-        if(Current == false)
+        if (Current == false)
         {
             collider.enabled = false;
         }

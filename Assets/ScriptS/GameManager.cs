@@ -38,11 +38,13 @@ public class GameManager : MonoBehaviour
     Text Inform;
     Controller controller;
     ChangeScene changeScene;
+    ChessAgent chessAgent;
     public void Component()
     {
         Inform = GameObject.Find("Inform").GetComponent<Text>();
         controller = GameObject.Find("Controller").GetComponent<Controller>();
         changeScene = this.gameObject.GetComponent<ChangeScene>();
+        chessAgent = GameObject.Find("ChessAgent").GetComponent<ChessAgent>();
     }
 
 
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void CHECKMATE()
     {
         controller.enabled = false;
+        chessAgent.enabled = false;
         Inform.text = "CHECKMATE";
         StartCoroutine(changeScene.Scene("Menu", 5.0f));
     }
