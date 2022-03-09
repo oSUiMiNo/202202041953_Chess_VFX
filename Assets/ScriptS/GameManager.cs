@@ -24,15 +24,6 @@ public class GameManager : MonoBehaviour
         Component(); 
     }
 
-    public float Timer;
-    private void Update()
-    {
-        Timer += Time.deltaTime;
-        if(!GameObject.Find("White_King0") || !GameObject.Find("Black_King0"))
-        {
-            Invoke("CHECKMATE", 1.0f);
-        }
-    }
 
     //インスタンスたちを取得
     Text Inform;

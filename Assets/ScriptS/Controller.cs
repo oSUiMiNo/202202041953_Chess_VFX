@@ -51,7 +51,12 @@ public class Controller : MonoBehaviour
     public float StateTime;
     public void Update()
     {
-        if(ChessAgent.enabled == false)
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (ChessAgent.enabled == false)
         {
             Human();
         }
@@ -59,10 +64,7 @@ public class Controller : MonoBehaviour
         //{
         //    Agent();
         //}
-    }
 
-    private void FixedUpdate()
-    {
         if (animator != null && animator.enabled == true)
         {
             if (PieceState.Bool1 == false)
@@ -242,7 +244,8 @@ public class Controller : MonoBehaviour
 
     public void Attack(GameObject Piece_Current)
     {
-        store_Piece.Piece_Square(Square_Select()).SetActive(false);
+        Piece piece = Piece_Current.GetComponent<Piece>();
+        GameObject subject = store_Piece.Piece_Square(Square_Select());
 
         if (ChessAgent.enabled == false)
         {
@@ -256,13 +259,15 @@ public class Controller : MonoBehaviour
             StartCoroutine(Change_Turn());
         }
 
-
-        Piece piece = Piece_Current.GetComponent<Piece>();
-        if (piece.type == PieceType.Pawn)
+        if (subject.GetComponent<Piece>().type == PieceType.King)
+        {
+            GameManager.instance.CHECKMATE();
+        }
+        else if (Piece_Current.GetComponent<Piece>().type == PieceType.Pawn)
         {
             piece.first = false;
         }
-        
+        subject.SetActive(false);
         //Debug.Log("Attack");
     }
 

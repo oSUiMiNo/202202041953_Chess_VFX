@@ -50,8 +50,10 @@ public class Knight : Piece
         for (int a = 1; a < 8; a++)
         {
             CantMove(CanMove_Next[a]);
-            if (Exist_Player || Out_of_Borad) { break; }
-            if (Exist_Oponent) { Attack.Add(CanMove_Next[a]); break; }
+            if(!Exist_Player && !Out_of_Borad && Exist_Oponent)
+            {
+                Attack.Add(CanMove_Next[a]);
+            }
         }
         return Attack;
     }
