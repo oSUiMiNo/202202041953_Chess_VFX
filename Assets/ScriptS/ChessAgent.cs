@@ -141,24 +141,27 @@ public class ChessAgent : MonoBehaviour
 
     public IEnumerator Move_Action()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(0.02f);
         //Debug.Log("6  " + "Move_Action IN");
 
         //行先選択
         MSelection = Move_Select();
-
-        //ray = new Ray(Camera.main.transform.position, MSelection - Camera.main.transform.position);
         ray = new Ray(new Vector3(0, 15, 0), MSelection - new Vector3(0, 15, 0));
         Point = Physics.Raycast(ray, out Hit);
+
+        while (Point == false) //処理がすり抜けてコライダーにヒットしなかった時の回収用。
+        {
+            yield return new WaitForSeconds(0.02f);
+            Debug.Log("   " + "No Hit");
+            ray = new Ray(new Vector3(0, 15, 0), MSelection - new Vector3(0, 15, 0));
+            Point = Physics.Raycast(ray, out Hit);
+        }
         //Debug.DrawRay(ray.origin, ray.direction * 50, Color.green, 0.5f, true);
         //foreach (var item in Physics.RaycastAll(ray))
         //{
         //Debug.Log("Hitした : " + item.transform.name);
         //}
-        if(Point == false)
-        {
-            Debug.Log("   " + "No Hit");
-        }
+
 
         //Debug.Log("   " + "Do Start");
         Do();

@@ -88,6 +88,6 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - Color_3E7A5553: {r: 0, g: 0, b: 0, a: 1}
-    - Color_62FE9F2: {r: 0.17928976, g: 0.17928976, b: 0.745283, a: 1}
+    - Color_62FE9F2: {r: 0.2206746, g: 0.2206746, b: 0.8207547, a: 1}
     - _DoubleSidedConstants: {r: -1, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

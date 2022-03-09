@@ -37,8 +37,15 @@ public class Controller : MonoBehaviour
         ChessAgent = GameObject.Find("ChessAgent").GetComponent<ChessAgent>();
     }
 
+    public GameObject CurrentLight_0, CurrentLight_1, Light, Pendant_Light;
+    public void Objects()
+    {
+        Light = GameObject.Find("Light");
+        Pendant_Light = GameObject.Find("Light_Pendant");
+        CurrentLight_0 = GameObject.Find("Light_Current_0");
+        CurrentLight_1 = GameObject.Find("Light_Current_1");
+    }
 
-    public bool AIMode;
 
     public float Times;
     public float StateTime;
@@ -52,7 +59,10 @@ public class Controller : MonoBehaviour
         //{
         //    Agent();
         //}
+    }
 
+    private void FixedUpdate()
+    {
         if (animator != null && animator.enabled == true)
         {
             if (PieceState.Bool1 == false)
@@ -431,7 +441,7 @@ public class Controller : MonoBehaviour
     
     public IEnumerator FixPosition_Piece()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         animator.enabled = false;
         
         int X = Mathf.FloorToInt(Piece_Current.transform.position.x);
@@ -472,6 +482,11 @@ public class Controller : MonoBehaviour
     public void Initialize_Game()
     {
         Turn = true;
+        FixPosition_Camera();
+        Light.SetActive(true);
+        Pendant_Light.SetActive(true);
+        CurrentLight_0.SetActive(false);
+        CurrentLight_1.SetActive(true);
     }
     public IEnumerator Change_Turn()
     {
@@ -479,18 +494,48 @@ public class Controller : MonoBehaviour
 
         if(ChessAgent.enabled == false)
         {
-            if (Turn == false)
-            {
-                cameraState.Turn_Black = true;
-            }
             if (Turn == true)
             {
+                yield return new WaitForSeconds(2f);
                 cameraState.Turn_White = true;
-            }
-            yield return new WaitForSeconds(2f);
-            cameraState.Turn_White = false;
-            cameraState.Turn_Black = false;
+                Debug.Log(1);
 
+                yield return new WaitForSeconds(0.4f);
+                Pendant_Light.SetActive(false);
+                CurrentLight_0.SetActive(false);
+                Debug.Log(2);
+
+                yield return new WaitForSeconds(1f);
+                cameraState.Turn_White = false;
+                cameraState.Turn_Black = false;
+                Debug.Log(3);
+
+                yield return new WaitForSeconds(4f);
+                Pendant_Light.SetActive(true);
+                CurrentLight_1.SetActive(true);
+                Debug.Log(4);
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+                cameraState.Turn_Black = true;
+                Debug.Log(1);
+
+                yield return new WaitForSeconds(0.4f);
+                Pendant_Light.SetActive(false);
+                CurrentLight_1.SetActive(false);
+                Debug.Log(2);
+
+                yield return new WaitForSeconds(1f);
+                cameraState.Turn_White = false;
+                cameraState.Turn_Black = false;
+                Debug.Log(3);
+
+                yield return new WaitForSeconds(4f);
+                Pendant_Light.SetActive(true);
+                CurrentLight_0.SetActive(true);
+                Debug.Log(4);
+            }
             yield return new WaitForSeconds(2f);
             FixPosition_Camera();
         }
@@ -508,11 +553,13 @@ public class Controller : MonoBehaviour
         if (Turn == true)
         {
             Camera.main.GetComponent<Transform>().position = new Vector3(-3, 12, -12);
+            Camera.main.GetComponent<Transform>().rotation = Quaternion.Euler(45, 0, 0);
             //Debug.Log("Camera was Fixed");
         }
         else
         {
             Camera.main.GetComponent<Transform>().position = new Vector3(3, 12, 12);
+            Camera.main.GetComponent<Transform>().rotation = Quaternion.Euler(45, 180, 0);
             //Debug.Log("Camera was Fixed");
         }
     }

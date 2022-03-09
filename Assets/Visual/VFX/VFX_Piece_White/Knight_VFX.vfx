@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: King_VFX
+  m_Name: Knight_VFX
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
   m_Children:
@@ -110,7 +110,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.19677822291851045,"g":0.3824082016944885,"b":1.264150857925415,"a":1.0}'
+      m_SerializableObject: '{"r":0.9435462951660156,"g":1.0045043230056763,"b":1.4600862264633179,"a":1.0}'
     min: -Infinity
     max: Infinity
     descendantCount: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.029369886964559556,"g":0.1428987830877304,"b":0.5660377740859985,"a":1.0}'
+      m_SerializableObject: '{"r":0.10720007866621018,"g":0.17741172015666963,"b":0.6886792182922363,"a":1.0}'
     min: -Infinity
     max: Infinity
     descendantCount: 0
@@ -358,7 +358,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: King_VFX
+  m_Name: Knight_VFX
   m_Graph: {fileID: 114350483966674976}
   m_ShaderSources:
   - compute: 1
@@ -543,7 +543,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 1]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/King_VFX/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Knight_VFX/System 1/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -1305,7 +1305,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 2]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/King_VFX/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Knight_VFX/System 2/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -2067,7 +2067,7 @@ VisualEffectResource:
       = index;\n#endif\n#endif\n\t}\n}\n"
   - compute: 0
     name: '[System 3]Output Particle Mesh'
-    source: "Shader \"Hidden/VFX/King_VFX/System 3/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
+    source: "Shader \"Hidden/VFX/Knight_VFX/System 3/Output Particle Mesh\"\n{\n\tSubShader\n\t{\n\t\tTags
       { \"Queue\"=\"Geometry+0\" \"IgnoreProjector\"=\"False\" \"RenderType\"=\"Opaque\"
       }\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\tZTest
       LEqual\n\t\tZWrite On\n\t\tCull Back\n\t\t\n\t\n\t\t\t\n\t\tHLSLINCLUDE\n\t\t\n\t\t#define
@@ -3087,9 +3087,9 @@ VisualEffectResource:
         - m_ExpressionIndex: 8
           m_Value: {x: 0.04516733, y: 0.080681786, z: 0.3301887, w: 1}
         - m_ExpressionIndex: 9
-          m_Value: {x: 0.19677822, y: 0.3824082, z: 1.2641509, w: 1}
+          m_Value: {x: 0.9435463, y: 1.0045043, z: 1.4600862, w: 1}
         - m_ExpressionIndex: 11
-          m_Value: {x: 0.029369887, y: 0.14289878, z: 0.5660378, w: 1}
+          m_Value: {x: 0.10720008, y: 0.17741172, z: 0.6886792, w: 1}
       m_Uint:
         m_Array:
         - m_ExpressionIndex: 37
@@ -3109,7 +3109,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 32
           m_Value: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
         - m_ExpressionIndex: 59
-          m_Value: {fileID: 6918954641851045129, guid: b1f0787bec8ffef4daea9bcccfa1eeac,
+          m_Value: {fileID: 6918954641851045129, guid: 05bdf4e714e3b5a40ac5fe27001d7d66,
             type: 3}
         - m_ExpressionIndex: 40
           m_Value: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614685}
   - {fileID: 8926484042661614686}
   - {fileID: 8926484042661614687}
-  Asset: {fileID: -3256353808211938606, guid: b1f0787bec8ffef4daea9bcccfa1eeac, type: 3}
+  Asset: {fileID: -3256353808211938606, guid: 05bdf4e714e3b5a40ac5fe27001d7d66, type: 3}
 --- !u!114 &8926484042661614596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11196,7 +11196,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.19677822291851045,"g":0.3824082016944885,"b":1.264150857925415,"a":1.0}'
+      m_SerializableObject: '{"r":0.9435462951660156,"g":1.0045043230056763,"b":1.4600862264633179,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -16199,7 +16199,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -16254,7 +16254,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.029369886964559556,"g":0.1428987830877304,"b":0.5660377740859985,"a":1.0}'
+      m_SerializableObject: '{"r":0.10720007866621018,"g":0.17741172015666963,"b":0.6886792182922363,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: o
